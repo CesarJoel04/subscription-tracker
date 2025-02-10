@@ -1,12 +1,10 @@
-import mysql from 'mysql2';
-import { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } from './env.js';
+import { Sequelize } from 'sequelize';
+import env from './env';
 
-const pool = mysql.createPool({
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_NAME,
-    port: 3306,
+const sequelize = new Sequelize(env.DB_NAME, env.DB_USER, env.DB_PASSWORD, {
+    host: env.DB_HOST,
+    dialect: 'mysql',
+    logging: false, // disable logging if desired
 });
 
-export default pool;
+export default sequelize;
